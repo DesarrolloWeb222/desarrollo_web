@@ -1,0 +1,248 @@
+<div class="evaluation-container">
+  <!-- Header -->
+  <div class="header">
+    <h1><i class="fas fa-chalkboard-teacher"></i> Evaluación Docente</h1>
+    <p>Por favor evalúa tus cursos del semestre actual</p>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters-card">
+    <h5><i class="fas fa-filter"></i> Filtros</h5>
+    <div class="filter-group">
+      <label for="careerFilter">Carrera</label>
+      <select id="careerFilter" [(ngModel)]="selectedCareer" (change)="applyFilters()">
+        <option value="">Todas</option>
+        <option *ngFor="let career of careers" [value]="career">{{career}}</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label for="semesterFilter">Semestre</label>
+      <select id="semesterFilter" [(ngModel)]="selectedSemester" (change)="applyFilters()">
+        <option value="">Todos</option>
+        <option *ngFor="let semester of semesters" [value]="semester">{{semester}}</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label for="searchInput">Buscar</label>
+      <div class="search-group">
+        <input id="searchInput" type="text" [(ngModel)]="searchTerm" placeholder="Curso, docente o código">
+        <button (click)="applyFilters()"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alertas -->
+  <div *ngIf="hasUnevaluatedCourses" class="alert-warning">
+    <i class="fas fa-exclamation-triangle"></i> Tienes cursos sin evaluar. Por favor completa todas las evaluaciones.
+  </div>
+
+  <!-- Lista de cursos -->
+  <div class="courses-card">
+    <h5><i class="fas fa-book"></i> Tus Cursos</h5>
+    
+    <div *ngIf="filteredCourses.length === 0" class="no-courses">
+      No hay cursos para mostrar con los filtros seleccionados.
+    </div>
+    
+    <div *ngFor="let course of filteredCourses" class="course-item">
+      <div class="course-header">
+        <h6>{{course.name}} <span class="badge">{{course.code}}</span></h6>
+      </div>
+      
+      <div class="course-info">
+        <p><strong>Docente:</strong> {{course.teacher}}</p>
+        <p><strong>Carrera:</strong> {{course.career}}</p>
+        <p><strong>Semestre:</strong> {{course.semester}}</p>
+      </div>
+      
+      <div *ngIf="course.evaluation; else evaluateBlock" class="evaluation-info">
+        <p><strong>Tu evaluación:</strong> {{course.evaluation.grade}}</p>
+        <p><strong>Comentario:</strong> {{course.evaluation.comment}}</p>
+        <button (click)="openEvaluationModal(course)">Editar</button>
+      </div>
+      
+      <ng-template #evaluateBlock>
+        <button class="evaluate-btn" (click)="openEvaluationModal(course)">
+          <i class="fas fa-star"></i> Evaluar
+        </button>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="charts-section">
+    <div class="chart-card">
+      <h5>Evaluaciones por Carrera</h5>
+      <div class="chart-container">
+        <canvas #careerChart></canvas>
+      </div>
+    </div>
+    
+    <div class="chart-card">
+      <h5>Evaluaciones por Semestre</h5>
+      <div class="chart-container">
+        <canvas #semesterChart></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Evaluaciones históricas -->
+  <div class="history-card">
+    <h5><i class="fas fa-history"></i> Historial de Evaluaciones</h5>
+    
+    <div class="filter-group">
+      <label for="yearFilter">Año</label>
+      <select id="yearFilter" [(ngModel)]="selectedYear">
+        <option *ngFor="let year of years" [value]="year">{{year}}</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label for="semesterHistoryFilter">Semestre</label>
+      <select id="semesterHistoryFilter" [(ngModel)]="selectedHistorySemester">
+        <option value="1">Primer Semestre</option>
+        <option value="2">Segundo Semestre</option>
+      </select>
+    </div>
+    
+    <button (click)="loadHistory()">Cargar Historial</button>
+    
+    <div *ngIf="historicalEvaluations.length > 0" class="history-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Curso</th>
+            <th>Docente</th>
+            <th>Nota</th>
+            <th>Comentario</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let eval of historicalEvaluations">
+            <td>{{eval.courseName}}</td>
+            <td>{{eval.teacher}}</td>
+            <td>{{eval.grade}}</td>
+            <td>{{eval.comment}}</td>
+            <td>{{eval.date | date:'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div *ngIf="historicalEvaluations.length === 0" class="no-results">
+      No hay evaluaciones históricas para mostrar.
+    </div>
+  </div>
+
+  <!-- Ranking de docentes -->
+  <div class="teachers-card">
+    <h5><i class="fas fa-award"></i> Evaluación de Docentes</h5>
+    
+    <div class="teachers-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Docente</th>
+            <th>Promedio</th>
+            <th>Cursos</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let teacher of teachersRanking">
+            <td>{{teacher.name}}</td>
+            <td>
+              <span class="rating-badge" [style.background]="getTeacherRatingColor(teacher.average)">
+                {{teacher.average | number:'1.1-1'}}
+              </span>
+            </td>
+            <td>{{teacher.coursesCount}}</td>
+            <td>
+              <button (click)="showTeacherDetails(teacher)">Ver</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal de evaluación -->
+  <div *ngIf="selectedCourse" class="evaluation-modal">
+    <div class="modal-content">
+      <h3>Evaluar {{selectedCourse.name}}</h3>
+      
+      <form [formGroup]="evaluationForm" (ngSubmit)="submitEvaluation()">
+        <div class="form-group">
+          <label>Calificación (1-7)</label>
+          <input type="number" formControlName="grade" min="1" max="7" step="0.1">
+          <div *ngIf="evaluationForm.get('grade')?.invalid && evaluationForm.get('grade')?.touched" class="error">
+            La calificación debe estar entre 1 y 7
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Comentario</label>
+          <textarea formControlName="comment" rows="3"></textarea>
+          <div *ngIf="evaluationForm.get('comment')?.invalid && evaluationForm.get('comment')?.touched" class="error">
+            El comentario es obligatorio
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn">Cancelar</button>
+          <button type="submit" [disabled]="evaluationForm.invalid">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de docente -->
+  <div *ngIf="selectedTeacher" class="teacher-modal">
+    <div class="modal-content">
+      <h3>Detalles de {{selectedTeacher.name}}</h3>
+      
+      <div class="teacher-info">
+        <div class="rating-circle" [style.background]="getTeacherRatingColor(selectedTeacher.average)">
+          {{selectedTeacher.average | number:'1.1-1'}}
+        </div>
+        
+        <div class="info-text">
+          <p><strong>Promedio:</strong> {{selectedTeacher.average | number:'1.1-1'}}</p>
+          <p><strong>Cursos evaluados:</strong> {{selectedTeacher.coursesCount}}</p>
+        </div>
+      </div>
+      
+      <h4>Cursos</h4>
+      <div class="teacher-courses">
+        <table>
+          <thead>
+            <tr>
+              <th>Curso</th>
+              <th>Semestre</th>
+              <th>Promedio</th>
+              <th>Evaluaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let course of selectedTeacher.courses">
+              <td>{{course.name}}</td>
+              <td>{{course.semester}}</td>
+              <td>{{course.average | number:'1.1-1'}}</td>
+              <td>{{course.evaluationsCount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h4>Historial</h4>
+      <div class="chart-container">
+        <canvas #teacherChart></canvas>
+      </div>
+      
+      <button class="close-btn" (click)="selectedTeacher = null">Cerrar</button>
+    </div>
+  </div>
+</div>
