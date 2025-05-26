@@ -6,23 +6,3 @@
   <div class="warning" *ngIf="evaluationService.getUnevaluatedCourses(currentStudentId).length > 0">
     Tienes {{ evaluationService.getUnevaluatedCourses(currentStudentId).length }} cursos sin evaluar
   </div>
-
-  <div class="evaluation-sections">
-    <section>
-      <h2>Mis Cursos</h2>
-      <app-course-list 
-        [courses]="evaluationService.getStudentCourses(currentStudentId)">
-      </app-course-list>
-    </section>
-
-    <section>
-      <h2>Evaluación de Docentes</h2>
-      <app-teacher-ratings></app-teacher-ratings>
-    </section>
-  </div>
-
-  <app-charts></app-charts>
-  <app-search></app-search>
-</div>
-
-<app-footer></app-footer>
