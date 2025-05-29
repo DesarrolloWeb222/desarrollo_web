@@ -18,7 +18,7 @@ import { RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, 
     templateUrl: './widgets-dropdown.component.html',
     styleUrls: ['./widgets-dropdown.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
-    imports: [RowComponent, ColComponent]
+    imports: [RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, IconDirective, ThemeDirective, DropdownComponent, ButtonDirective, DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective, RouterLink, DropdownDividerDirective, ChartjsComponent]
 })
 export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 

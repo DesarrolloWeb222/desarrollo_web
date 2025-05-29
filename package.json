@@ -37,7 +37,6 @@
     "@coreui/icons-angular": "~5.4.5",
     "@coreui/utils": "^2.0.2",
     "chart.js": "^4.4.8",
-    "docs-components": "^1.0.0-1",
     "lodash-es": "^4.17.21",
     "ngx-scrollbar": "^13.0.3",
     "rxjs": "~7.8.2",
