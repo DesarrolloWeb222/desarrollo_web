@@ -1,6 +1,7 @@
 import { DOCUMENT, NgStyle } from '@angular/common';
 import { Component, DestroyRef, effect, inject, OnInit, Renderer2, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router'
 import { ChartOptions } from 'chart.js';
 import {
   AvatarComponent,
@@ -30,19 +31,20 @@ interface IUser {
   name: string;
   state: string;
   registered: string;
-  period?: string; // Nueva propiedad para el período
+  country: string;
   usage: number;
+  period: string;
+  buttonLabel: string;
   activity: string;
   avatar: string;
   status: string;
   color: string;
-  buttonLabel: string; // Nueva propiedad para el botón
 }
 
 @Component({
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.scss'],
-    imports: [TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent]
+    imports: [WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, WidgetsBrandComponent, CardHeaderComponent, TableDirective, AvatarComponent]
 })
 export class DashboardComponent implements OnInit {
 
@@ -53,70 +55,82 @@ export class DashboardComponent implements OnInit {
 
   public users: IUser[] = [
     {
-      name: 'Yiorgia Papadopoulou',
+      name: 'Yiorgos Avraamu',
       state: 'New',
       registered: 'Jan 1, 2021',
+      country: 'Us',
       usage: 50,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+      buttonLabel: 'Mastercard',
       activity: '10 sec ago',
       avatar: './assets/images/avatars/1.jpg',
       status: 'success',
-      color: 'success',
-      buttonLabel: 'Responder'
+      color: 'success'
     },
     {
-      name: 'Abraham Lincoln',
+      name: 'Avram Tarasios',
       state: 'Recurring ',
       registered: 'Jan 1, 2021',
+      country: 'Br',
       usage: 10,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+      buttonLabel: 'Visa',
       activity: '5 minutes ago',
       avatar: './assets/images/avatars/2.jpg',
       status: 'danger',
-      color: 'info',
-      buttonLabel: 'Responder'
+      color: 'info'
     },
     {
-      name: 'Quentin Taranchino',
+      name: 'Quintin Ed',
       state: 'New',
       registered: 'Jan 1, 2021',
+      country: 'In',
       usage: 74,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+      buttonLabel: 'Stripe',
       activity: '1 hour ago',
       avatar: './assets/images/avatars/3.jpg',
       status: 'warning',
-      color: 'warning',
-      buttonLabel: 'Responder'
+      color: 'warning'
     },
     {
-      name: 'Anais Fuentes',
+      name: 'Enéas Kwadwo',
       state: 'Sleep',
       registered: 'Jan 1, 2021',
+      country: 'Fr',
       usage: 98,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+      buttonLabel: 'Paypal',
       activity: 'Last month',
       avatar: './assets/images/avatars/4.jpg',
       status: 'secondary',
-      color: 'danger',
-      buttonLabel: 'Responder'
+      color: 'danger'
     },
     {
-      name: 'Agatha Ruiz',
+      name: 'Agapetus Tadeáš',
       state: 'New',
       registered: 'Jan 1, 2021',
+      country: 'Es',
       usage: 22,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+      buttonLabel: 'ApplePay',
       activity: 'Last week',
       avatar: './assets/images/avatars/5.jpg',
       status: 'success',
-      color: 'primary',
-      buttonLabel: 'Responder'
+      color: 'primary'
     },
     {
-      name: 'Dávid Bisbal',
+      name: 'Friderik Dávid',
       state: 'New',
       registered: 'Jan 1, 2021',
+      country: 'Pl',
       usage: 43,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+      buttonLabel: 'Amex',
       activity: 'Yesterday',
       avatar: './assets/images/avatars/6.jpg',
       status: 'info',
-      color: 'dark',
-      buttonLabel: 'Responder'
+      color: 'dark'
     }
   ];
 
@@ -132,6 +146,10 @@ export class DashboardComponent implements OnInit {
     trafficRadio: new FormControl('Month')
   });
 
+constructor(private router: Router) {}
+abrirEncuesta() {
+  this.router.navigate(['encuesta']);
+}
   ngOnInit(): void {
     this.initCharts();
     this.updateChartOnColorModeChange();

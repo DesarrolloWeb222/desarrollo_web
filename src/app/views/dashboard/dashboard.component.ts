@@ -2,6 +2,8 @@ import { DOCUMENT, NgStyle } from '@angular/common';
 import { Component, DestroyRef, effect, inject, OnInit, Renderer2, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ChartOptions } from 'chart.js';
+import { Router } from '@angular/router';
+
 import {
   AvatarComponent,
   ButtonDirective,
@@ -31,10 +33,11 @@ interface IUser {
   state: string;
   registered: string;
   usage: number;
+  period: string;
+  buttonLabel: string;
   activity: string;
   avatar: string;
   status: string;
-  buttonLabel: string;
   color: string;
   
 }
@@ -57,6 +60,7 @@ export class DashboardComponent implements OnInit {
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 50,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
       activity: '10 sec ago',
       avatar: './assets/images/avatars/1.jpg',
       status: 'success',
@@ -68,6 +72,7 @@ export class DashboardComponent implements OnInit {
       state: 'Recurring ',
       registered: 'Jan 1, 2021',
       usage: 10,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
       activity: '5 minutes ago',
       avatar: './assets/images/avatars/2.jpg',
       status: 'danger',
@@ -79,6 +84,7 @@ export class DashboardComponent implements OnInit {
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 74,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
       activity: '1 hour ago',
       avatar: './assets/images/avatars/3.jpg',
       status: 'warning',
@@ -90,6 +96,7 @@ export class DashboardComponent implements OnInit {
       state: 'Sleep',
       registered: 'Jan 1, 2021',
       usage: 98,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
       activity: 'Last month',
       avatar: './assets/images/avatars/4.jpg',
       status: 'secondary',
@@ -101,6 +108,8 @@ export class DashboardComponent implements OnInit {
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 22,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+     
       activity: 'Last week',
       avatar: './assets/images/avatars/5.jpg',
       status: 'success',
@@ -112,6 +121,8 @@ export class DashboardComponent implements OnInit {
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 43,
+      period: 'Jun 11, 2021 - Jul 10, 2021',
+      buttonLabel: 'Amex',
       activity: 'Yesterday',
       avatar: './assets/images/avatars/6.jpg',
       status: 'info',
@@ -131,6 +142,14 @@ export class DashboardComponent implements OnInit {
   public trafficRadioGroup = new FormGroup({
     trafficRadio: new FormControl('Month')
   });
+
+  constructor(private router: Router) {
+    // ...otros injects si tienes...
+  }
+
+  abrirEncuesta() {
+  this.router.navigate(['dashboard', 'encuesta']);
+}
 
   ngOnInit(): void {
     this.initCharts();

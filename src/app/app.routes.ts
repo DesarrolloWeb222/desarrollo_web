@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layout';
+import { EncuestaComponent } from '../components/encuesta/encuesta.component'; // Ajusta la ruta si es necesario
+
+
 
 export const routes: Routes = [
   {

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { EncuestaComponent } from '../../../components/encuesta/encuesta.component';
 
 export const routes: Routes = [
   {
@@ -7,6 +8,10 @@ export const routes: Routes = [
     data: {
       title: $localize`Dashboard`
     }
+  },
+  {
+    path: 'encuesta',
+    component: EncuestaComponent
   }
 ];
 
