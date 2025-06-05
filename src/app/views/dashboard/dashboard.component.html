@@ -376,9 +376,9 @@
                   </div>
                   <c-progress thin [value]="user.usage" color="{{ user.color }}" aria-label="Usage" />
                 </td>
-                <td class="text-center">
-                  <svg cIcon name="cibCc{{ user.payment }}" size="xl"></svg>
-                </td>
+                <button cButton color="primary" (click)="abrirEncuesta()">
+                  Abrir Encuesta
+                </button>
                 <td>
                   <div class="small text-body-secondary">Last login</div>
                   <div class="fw-semibold text-nowrap">{{ user.activity }}</div>

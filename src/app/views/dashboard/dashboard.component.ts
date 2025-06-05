@@ -2,6 +2,8 @@ import { DOCUMENT, NgStyle } from '@angular/common';
 import { Component, DestroyRef, effect, inject, OnInit, Renderer2, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ChartOptions } from 'chart.js';
+import { Router } from '@angular/router';
+
 import {
   AvatarComponent,
   ButtonDirective,
@@ -33,7 +35,7 @@ interface IUser {
   country: string;
   usage: number;
   period: string;
-  payment: string;
+  buttonLabel: string;
   activity: string;
   avatar: string;
   status: string;
@@ -43,7 +45,7 @@ interface IUser {
 @Component({
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.scss'],
-    imports: [WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, WidgetsBrandComponent, CardHeaderComponent, TableDirective, AvatarComponent]
+    imports: [WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent]
 })
 export class DashboardComponent implements OnInit {
 
@@ -60,7 +62,7 @@ export class DashboardComponent implements OnInit {
       country: 'Us',
       usage: 50,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Mastercard',
+      buttonLabel: 'Mastercard',
       activity: '10 sec ago',
       avatar: './assets/images/avatars/1.jpg',
       status: 'success',
@@ -73,7 +75,7 @@ export class DashboardComponent implements OnInit {
       country: 'Br',
       usage: 10,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Visa',
+      buttonLabel: 'Visa',
       activity: '5 minutes ago',
       avatar: './assets/images/avatars/2.jpg',
       status: 'danger',
@@ -86,7 +88,7 @@ export class DashboardComponent implements OnInit {
       country: 'In',
       usage: 74,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Stripe',
+      buttonLabel: 'Stripe',
       activity: '1 hour ago',
       avatar: './assets/images/avatars/3.jpg',
       status: 'warning',
@@ -99,7 +101,7 @@ export class DashboardComponent implements OnInit {
       country: 'Fr',
       usage: 98,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Paypal',
+      buttonLabel: 'Paypal',
       activity: 'Last month',
       avatar: './assets/images/avatars/4.jpg',
       status: 'secondary',
@@ -112,7 +114,7 @@ export class DashboardComponent implements OnInit {
       country: 'Es',
       usage: 22,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'ApplePay',
+      buttonLabel: 'ApplePay',
       activity: 'Last week',
       avatar: './assets/images/avatars/5.jpg',
       status: 'success',
@@ -125,7 +127,7 @@ export class DashboardComponent implements OnInit {
       country: 'Pl',
       usage: 43,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Amex',
+      buttonLabel: 'Amex',
       activity: 'Yesterday',
       avatar: './assets/images/avatars/6.jpg',
       status: 'info',
@@ -144,6 +146,14 @@ export class DashboardComponent implements OnInit {
   public trafficRadioGroup = new FormGroup({
     trafficRadio: new FormControl('Month')
   });
+
+  constructor(private router: Router) {
+    // ...otros injects si tienes...
+  }
+
+  abrirEncuesta() {
+  this.router.navigate(['dashboard', 'encuesta']);
+}
 
   ngOnInit(): void {
     this.initCharts();
