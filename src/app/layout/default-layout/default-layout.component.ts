@@ -50,4 +50,3 @@ function isOverflown(element: HTMLElement) {
 export class DefaultLayoutComponent {
   public navItems = [...navItems];
 }
-s
