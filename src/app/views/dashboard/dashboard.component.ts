@@ -30,20 +30,19 @@ interface IUser {
   name: string;
   state: string;
   registered: string;
-  country: string;
   usage: number;
-  period: string;
-  payment: string;
   activity: string;
   avatar: string;
   status: string;
+  buttonLabel: string;
   color: string;
+  
 }
 
 @Component({
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.scss'],
-    imports: [WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, WidgetsBrandComponent, CardHeaderComponent, TableDirective, AvatarComponent]
+    imports: [TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent]
 })
 export class DashboardComponent implements OnInit {
 
@@ -54,82 +53,70 @@ export class DashboardComponent implements OnInit {
 
   public users: IUser[] = [
     {
-      name: 'Yiorgos Avraamu',
+      name: 'Yiorgia Cifuentes',
       state: 'New',
       registered: 'Jan 1, 2021',
-      country: 'Us',
       usage: 50,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Mastercard',
       activity: '10 sec ago',
       avatar: './assets/images/avatars/1.jpg',
       status: 'success',
-      color: 'success'
+      color: 'success',
+      buttonLabel: 'Responder'
     },
     {
-      name: 'Avram Tarasios',
+      name: 'Abraham Puertas',
       state: 'Recurring ',
       registered: 'Jan 1, 2021',
-      country: 'Br',
       usage: 10,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Visa',
       activity: '5 minutes ago',
       avatar: './assets/images/avatars/2.jpg',
       status: 'danger',
-      color: 'info'
+      color: 'info',
+      buttonLabel: 'Responder'
     },
     {
-      name: 'Quintin Ed',
+      name: 'Quentin Taranchino',
       state: 'New',
       registered: 'Jan 1, 2021',
-      country: 'In',
       usage: 74,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Stripe',
       activity: '1 hour ago',
       avatar: './assets/images/avatars/3.jpg',
       status: 'warning',
-      color: 'warning'
+      color: 'warning',
+      buttonLabel: 'Responder'
     },
     {
-      name: 'Enéas Kwadwo',
+      name: 'Enéas Cuevas',
       state: 'Sleep',
       registered: 'Jan 1, 2021',
-      country: 'Fr',
       usage: 98,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Paypal',
       activity: 'Last month',
       avatar: './assets/images/avatars/4.jpg',
       status: 'secondary',
-      color: 'danger'
+      color: 'danger',
+      buttonLabel: 'Responder'
     },
     {
-      name: 'Agapetus Tadeáš',
+      name: 'Agatha Ruiz',
       state: 'New',
       registered: 'Jan 1, 2021',
-      country: 'Es',
       usage: 22,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'ApplePay',
       activity: 'Last week',
       avatar: './assets/images/avatars/5.jpg',
       status: 'success',
-      color: 'primary'
+      color: 'primary',
+      buttonLabel: 'Responder'
     },
     {
-      name: 'Friderik Dávid',
+      name: 'Dávid Bisbal',
       state: 'New',
       registered: 'Jan 1, 2021',
-      country: 'Pl',
       usage: 43,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-      payment: 'Amex',
       activity: 'Yesterday',
       avatar: './assets/images/avatars/6.jpg',
       status: 'info',
-      color: 'dark'
+      color: 'dark',
+      buttonLabel: 'Responder'
     }
   ];
 
