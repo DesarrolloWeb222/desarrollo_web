@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit {
       registered: 'Jan 1, 2021',
       usage: 43,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      buttonLabel: 'Amex',
+    
       activity: 'Yesterday',
       avatar: './assets/images/avatars/6.jpg',
       status: 'info',
