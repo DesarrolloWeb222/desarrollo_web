@@ -3,6 +3,8 @@ import { Component, DestroyRef, effect, inject, OnInit, Renderer2, signal, Writa
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ChartOptions } from 'chart.js';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 import {
   AvatarComponent,
@@ -29,6 +31,7 @@ import { WidgetsDropdownComponent } from '../widgets/widgets-dropdown/widgets-dr
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 interface IUser {
+  id: string;
   name: string;
   state: string;
   registered: string;
@@ -46,6 +49,7 @@ interface IUser {
     styleUrls: ['dashboard.component.scss'],
     imports: [TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent]
 })
+
 export class DashboardComponent implements OnInit {
 
   readonly #destroyRef: DestroyRef = inject(DestroyRef);
@@ -55,7 +59,8 @@ export class DashboardComponent implements OnInit {
 
   public users: IUser[] = [
     {
-      name: 'Yiorgia Cifuentes',
+      id: '1',
+      name: 'Rafaela Fuentes',
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 50,
@@ -66,7 +71,8 @@ export class DashboardComponent implements OnInit {
       buttonLabel: 'Responder'
     },
     {
-      name: 'Abraham Puertas',
+      id: '2',
+      name: 'Tomás Acevedo',
       state: 'Recurring ',
       registered: 'Jan 1, 2021',
       usage: 10,
@@ -77,7 +83,8 @@ export class DashboardComponent implements OnInit {
       buttonLabel: 'Responder'
     },
     {
-      name: 'Quentin Taranchino',
+      id: '3',
+      name: 'Gustavo Mondaca',
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 74,
@@ -88,7 +95,8 @@ export class DashboardComponent implements OnInit {
       buttonLabel: 'Responder'
     },
     {
-      name: 'Enéas Cuevas',
+      id: '4',
+      name: 'Fabiola Alvarado',
       state: 'Sleep',
       registered: 'Jan 1, 2021',
       usage: 98,
@@ -99,6 +107,7 @@ export class DashboardComponent implements OnInit {
       buttonLabel: 'Responder'
     },
     {
+      id: '5',
       name: 'Agatha Ruiz',
       state: 'New',
       registered: 'Jan 1, 2021',
@@ -110,6 +119,7 @@ export class DashboardComponent implements OnInit {
       buttonLabel: 'Responder'
     },
     {
+      id: '6',
       name: 'Dávid Bisbal',
       state: 'New',
       registered: 'Jan 1, 2021',
@@ -140,6 +150,10 @@ export class DashboardComponent implements OnInit {
 
   abrirEncuesta() {
   this.router.navigate(['dashboard', 'encuesta']);
+}
+
+verHistorica(user: any) {
+  this.router.navigate(['dashboard', 'historica'], { queryParams: { profesorId: user.id } });
 }
 
   ngOnInit(): void {

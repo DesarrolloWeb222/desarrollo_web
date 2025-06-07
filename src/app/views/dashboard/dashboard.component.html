@@ -18,7 +18,7 @@
             </th>
             <th class="bg-body-tertiary">Porfesor/a</th>
             <th class="bg-body-tertiary">Calificación</th>
-            <th class="bg-body-tertiary">Encuesta</th>
+            <th class="bg-body-tertiary">Evaluaciones históricas</th>
           </tr>
           </thead>
           <tbody>
@@ -48,9 +48,13 @@
                   </div>
                   <c-progress thin [value]="user.usage" color="{{ user.color }}" aria-label="Usage" />
                 </td>
-                <button cButton color="primary" (click)="abrirEncuesta()">
-                  Abrir Encuesta
-                </button>
+                <td>
+                  <button cButton color="info" (click)="verHistorica(user)">
+                    Ver histórico
+                  </button>
+                </td>
+                
+                
               </tr>
             }
           </tbody>
@@ -59,6 +63,11 @@
     </c-card>
   </c-col>
 </c-row>
+<div class="text-center">
+  <button cButton color="primary" (click)="abrirEncuesta()">
+    Abrir Encuesta
+  </button>
+</div>
 <c-row class="mt-4">
   <c-col xs>
     <c-card class="mb-4">

@@ -333,7 +333,6 @@
             <th class="bg-body-tertiary">User</th>
             <th class="bg-body-tertiary text-center">Country</th>
             <th class="bg-body-tertiary">Usage</th>
-            <th class="bg-body-tertiary text-center">Encuesta</th>
             <th class="bg-body-tertiary">Activity</th>
           </tr>
           </thead>
@@ -373,13 +372,7 @@
                   </div>
                   <c-progress thin [value]="user.usage" color="{{ user.color }}" aria-label="Usage" />
                 </td>
-                <td class="text-center">
-                  <div class="mb-3">
-                    <button cButton color="primary" (click)="abrirEncuesta()">
-                      Abrir Encuesta
-                    </button>
-                  </div>
-                </td>
+          
                 <td>
                   <div class="small text-body-secondary">Last login</div>
                   <div class="fw-semibold text-nowrap">{{ user.activity }}</div>
@@ -390,5 +383,6 @@
         </table>
       </c-card-body>
     </c-card>
+    
   </c-col>
 </c-row>
