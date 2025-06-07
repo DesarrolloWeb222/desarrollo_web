@@ -1,26 +1,60 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // <-- Agrega esto
+import { Router } from '@angular/router'; // <-- Agrega esto
+
 
 @Component({
   selector: 'app-encuesta',
   templateUrl: './encuesta.component.html',
-  styleUrls: ['./encuesta.component.scss']
+  styleUrls: ['./encuesta.component.scss'],
+  standalone: true,
+  imports: [CommonModule, FormsModule] // <-- Agrega CommonModule aquí
 })
 export class EncuestaComponent {
+  constructor(private router: Router) {}
   preguntas = [
     {
-      texto: '¿Cómo calificaría el conocimiento del profesor?',
-      opcion: ['Muy bueno', 'Bueno', 'Regular', 'Malo', 'Muy malo'],
-      respuesta: ''
+      texto: 'Calidad general del curso',
+      respuesta: null as number | null
     },
     {
-      texto: '¿Cómo calificaría la claridad en la explicación de los temas?',
-      opcion: ['Muy clara', 'Clara', 'Regular', 'Confusa', 'Muy confusa'],
-      respuesta: ''
+      texto: 'Nivel de dificultad',
+      respuesta: null as number | null
+    },
+    {
+      texto: 'Utilidad de los materiales proporcionados',
+      respuesta: null as number | null
+    },
+    {
+      texto: 'Claridad de los objetivos del curso',
+      respuesta: null as number | null
+    },
+    {
+      texto: 'Adecuación de la carga de trabajo',
+      respuesta: null as number | null
     }
   ];
 
+  comentarios: string = '';
+
   submitForm() {
-    console.log('Respuestas enviadas:', this.preguntas);
-    // Aquí puedes agregar código para enviar las respuestas a un servidor, etc.
+    const evaluacion = {
+      preguntas: this.preguntas,
+      comentarios: this.comentarios,
+      fecha: new Date().toISOString()
+    };
+
+    console.log('Evaluación enviada:', evaluacion);
+    // Aquí puedes implementar el envío al servidor
+    alert('¡Evaluación enviada con éxito!');
+    
+    // Resetear el formulario
+    this.preguntas.forEach(p => p.respuesta = null);
+    this.comentarios = '';
+  }
+
+  volverInicio() {
+    this.router.navigate(['/dashboard']);
   }
 }
