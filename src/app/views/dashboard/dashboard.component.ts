@@ -40,7 +40,6 @@ interface IUser {
   buttonLabel: string;
   avatar: string;
   status: string;
-  color: string;
   
 }
 
@@ -61,73 +60,67 @@ export class DashboardComponent implements OnInit {
     {
       id: '1',
       name: 'Rafaela Fuentes',
-      state: 'New',
-      registered: 'Jan 1, 2021',
+      state: 'ING',
+      registered: 'NRC:5493',
       usage: 50,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
+      period: 'Primer semestre 2025',
       avatar: './assets/images/avatars/1.jpg',
       status: 'success',
-      color: 'success',
       buttonLabel: 'Responder'
     },
     {
       id: '2',
       name: 'Tomás Acevedo',
-      state: 'Recurring ',
-      registered: 'Jan 1, 2021',
+      state: 'ICIF ',
+      registered: 'NRC:6589',
       usage: 10,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
+      period: 'Primer semestre 2025',
       avatar: './assets/images/avatars/2.jpg',
       status: 'danger',
-      color: 'info',
       buttonLabel: 'Responder'
     },
     {
       id: '3',
       name: 'Gustavo Mondaca',
-      state: 'New',
-      registered: 'Jan 1, 2021',
+      state: 'ING',
+      registered: 'NRC:5465',
       usage: 74,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
+      period: 'Primer semestre 2025',
       avatar: './assets/images/avatars/3.jpg',
       status: 'warning',
-      color: 'warning',
       buttonLabel: 'Responder'
     },
     {
       id: '4',
       name: 'Fabiola Alvarado',
-      state: 'Sleep',
-      registered: 'Jan 1, 2021',
+      state: 'ICIF',
+      registered: 'NRC:6578',
       usage: 98,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
+      period: 'Primer semestre 2025',
       avatar: './assets/images/avatars/4.jpg',
       status: 'secondary',
-      color: 'danger',
       buttonLabel: 'Responder'
     },
     {
       id: '5',
       name: 'Agatha Ruiz',
-      state: 'New',
-      registered: 'Jan 1, 2021',
+      state: 'ING',
+      registered: 'NRC:5466',
       usage: 22,
-      period: 'Jun 11, 2021 - Jul 10, 2021',     
+      period: 'Primer semestre 2025',
       avatar: './assets/images/avatars/5.jpg',
       status: 'success',
-      color: 'primary',
       buttonLabel: 'Responder'
     },
     {
       id: '6',
       name: 'Dávid Bisbal',
-      state: 'New',
-      registered: 'Jan 1, 2021',
+      state: 'ICIF',
+      registered: 'NRC:6514',
       usage: 43,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
+      period: 'Primer semestre 2025',
       avatar: './assets/images/avatars/6.jpg',
       status: 'info',
-      color: 'dark',
       buttonLabel: 'Responder'
     }
   ];

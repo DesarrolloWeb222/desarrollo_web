@@ -16,8 +16,8 @@
             <th class="bg-body-tertiary text-center ">
               <svg cIcon name="cilPeople"></svg>
             </th>
-            <th class="bg-body-tertiary">Porfesor/a</th>
-            <th class="bg-body-tertiary">Calificación</th>
+            <th class="bg-body-tertiary">Profesor/a</th>
+            <th class="bg-body-tertiary">Progreso</th>
             <th class="bg-body-tertiary">Evaluaciones históricas</th>
           </tr>
           </thead>
@@ -31,7 +31,7 @@
                   <div>{{ user.name }}</div>
                   <div class="small text-body-secondary text-nowrap">
                   <span>
-                    {{ user.state }} | Registered: {{ user.registered }}
+                    {{ user.state }} |  {{ user.registered }}
                   </span>
                   </div>
                 </td>
@@ -46,7 +46,6 @@
                       </small>
                     </div>
                   </div>
-                  <c-progress thin [value]="user.usage" color="{{ user.color }}" aria-label="Usage" />
                 </td>
                 <td>
                   <button cButton color="info" (click)="verHistorica(user)">
@@ -79,7 +78,7 @@
               <c-col xs="6">
                 <div class="border-start border-start-4 border-start-info py-1 px-3 mb-3">
                   <div class="text-body-secondary text-truncate small">Sin Responder </div>
-                  <div class="fs-5 fw-semibold">9,123</div>
+                  <div class="fs-5 fw-semibold">923</div>
                 </div>
               </c-col>
               <c-col xs="6">
@@ -87,7 +86,7 @@
                   <div class="text-body-secondary text-truncate small">
                     Encuesta Respondida 
                   </div>
-                  <div class="fs-5 fw-semibold">22,643</div>
+                  <div class="fs-5 fw-semibold">2643</div>
                 </div>
               </c-col>
             </c-row>
@@ -166,7 +165,7 @@
               <c-col xs="6">
                 <div class="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
                   <div class="text-body-secondary text-truncate small">Total alumnos</div>
-                  <div class="fs-5 fw-semibold">78,623</div>
+                  <div class="fs-5 fw-semibold">3566</div>
                 </div>
               </c-col>
               <c-col xs="6">
@@ -179,8 +178,8 @@
             <div class="progress-group mb-4">
               <div class="progress-group-header">
                 <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
-                <span>Male</span>
-                <span class="ms-auto font-semibold">43%</span>
+                <span>Hombres</span>
+                <span class="ms-auto font-semibold">53%</span>
               </div>
               <div class="progress-group-bars">
                 <c-progress thin color="warning" value="43" aria-label="Male users" />
@@ -189,8 +188,8 @@
             <div class="progress-group mb-5">
               <div class="progress-group-header">
                 <svg cIcon class="icon icon-lg me-2" name="cilUserFemale"></svg>
-                <span>Female</span>
-                <span class="ms-auto font-semibold">37%</span>
+                <span>Mujeres</span>
+                <span class="ms-auto font-semibold">47%</span>
               </div>
               <div class="progress-group-bars">
                 <c-progress thin color="warning" value="37" aria-label="Feale users" />

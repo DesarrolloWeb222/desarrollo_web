@@ -115,7 +115,7 @@
             display: flex;
             gap: 0.5rem;
             margin-top: 0.3rem;
-            
+
             .course-badge {
               background-color: #e8f4fc;
               color: #2980b9;
@@ -124,13 +124,22 @@
               font-size: 0.8rem;
               font-weight: 500;
             }
-            
+
             .year-badge {
               background-color: #f0f0f0;
               color: #7f8c8d;
               padding: 0.2rem 0.5rem;
               border-radius: 4px;
               font-size: 0.8rem;
+            }
+
+            .semester-badge {
+              background-color: #f9e79f;
+              color: #b7950b;
+              padding: 0.2rem 0.5rem;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              font-weight: 500;
             }
           }
         }
