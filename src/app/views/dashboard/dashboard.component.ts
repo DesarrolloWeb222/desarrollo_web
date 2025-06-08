@@ -3,6 +3,8 @@ import { Component, DestroyRef, effect, inject, OnInit, Renderer2, signal, Writa
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ChartOptions } from 'chart.js';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 import {
   AvatarComponent,
@@ -29,13 +31,13 @@ import { WidgetsDropdownComponent } from '../widgets/widgets-dropdown/widgets-dr
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 interface IUser {
+  id: string;
   name: string;
   state: string;
   registered: string;
   usage: number;
   period: string;
   buttonLabel: string;
-  activity: string;
   avatar: string;
   status: string;
   color: string;
@@ -47,6 +49,7 @@ interface IUser {
     styleUrls: ['dashboard.component.scss'],
     imports: [TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent]
 })
+
 export class DashboardComponent implements OnInit {
 
   readonly #destroyRef: DestroyRef = inject(DestroyRef);
@@ -56,74 +59,72 @@ export class DashboardComponent implements OnInit {
 
   public users: IUser[] = [
     {
-      name: 'Yiorgia Cifuentes',
+      id: '1',
+      name: 'Rafaela Fuentes',
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 50,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      activity: '10 sec ago',
       avatar: './assets/images/avatars/1.jpg',
       status: 'success',
       color: 'success',
       buttonLabel: 'Responder'
     },
     {
-      name: 'Abraham Puertas',
+      id: '2',
+      name: 'Tomás Acevedo',
       state: 'Recurring ',
       registered: 'Jan 1, 2021',
       usage: 10,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      activity: '5 minutes ago',
       avatar: './assets/images/avatars/2.jpg',
       status: 'danger',
       color: 'info',
       buttonLabel: 'Responder'
     },
     {
-      name: 'Quentin Taranchino',
+      id: '3',
+      name: 'Gustavo Mondaca',
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 74,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      activity: '1 hour ago',
       avatar: './assets/images/avatars/3.jpg',
       status: 'warning',
       color: 'warning',
       buttonLabel: 'Responder'
     },
     {
-      name: 'Enéas Cuevas',
+      id: '4',
+      name: 'Fabiola Alvarado',
       state: 'Sleep',
       registered: 'Jan 1, 2021',
       usage: 98,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-      activity: 'Last month',
       avatar: './assets/images/avatars/4.jpg',
       status: 'secondary',
       color: 'danger',
       buttonLabel: 'Responder'
     },
     {
+      id: '5',
       name: 'Agatha Ruiz',
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 22,
-      period: 'Jun 11, 2021 - Jul 10, 2021',
-     
-      activity: 'Last week',
+      period: 'Jun 11, 2021 - Jul 10, 2021',     
       avatar: './assets/images/avatars/5.jpg',
       status: 'success',
       color: 'primary',
       buttonLabel: 'Responder'
     },
     {
+      id: '6',
       name: 'Dávid Bisbal',
       state: 'New',
       registered: 'Jan 1, 2021',
       usage: 43,
       period: 'Jun 11, 2021 - Jul 10, 2021',
-    
-      activity: 'Yesterday',
       avatar: './assets/images/avatars/6.jpg',
       status: 'info',
       color: 'dark',
@@ -149,6 +150,10 @@ export class DashboardComponent implements OnInit {
 
   abrirEncuesta() {
   this.router.navigate(['dashboard', 'encuesta']);
+}
+
+verHistorica(user: any) {
+  this.router.navigate(['dashboard', 'historica'], { queryParams: { profesorId: user.id } });
 }
 
   ngOnInit(): void {
