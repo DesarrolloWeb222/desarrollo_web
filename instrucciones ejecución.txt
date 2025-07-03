@@ -1,0 +1,27 @@
+Nuevos archivos py agregados:
+	- holamundo/apiviews.py
+	- holamundo/serializers.py
+
+Utilizando powershell:
+	1. Instalar virtualenv usando el siguiente comando (si ya lo tiene instalado pase al paso 2):
+		- pip install virtualenv
+
+	2. Asegurarse que puede ejecutar scripts, abrir un terminal de powershell en administrador y ejecutar:
+		- Set-ExecutionPolicy Unrestricted
+
+	3. Dentro de la carpeta "prueba" abrir una terminal y escribir lo siguiente para activar el entorno virtual:
+		- .\venv\Scripts\actívate.ps1
+
+	4. Al activar el entorno virtual debería ver el texto "(venv)" antes de C:\... si no esta verifique el paso 3 nuevamente
+
+	5. Instalar las dependencias con el comando:
+		- pip install -r requirements.txt
+
+	6. Ejecutar el proyecto
+		- python manage.py runserver
+
+	7. Abrir el navegador y probar las siguientes urls:
+		http://localhost:8000/holamundo/
+		http://localhost:8000/holamundo/usuarios
+		http://localhost:8000/holamundo/usuario/19
+		http://localhost:8000/holamundo/usuario/18
